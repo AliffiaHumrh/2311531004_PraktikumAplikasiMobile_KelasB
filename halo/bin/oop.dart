@@ -1,56 +1,48 @@
-import 'dart:io';
-import 'package:halo/oop.dart';
+void main(List<String> arguments) {
+  //Object Oriented Programming (OOP)
+  //membuat object
+  var car1 = Car();
+  car1.color = 'Red';
+  car1.brand = 'Toyota';
+  car1.year = 2020;
+  car1.drive();
+  car1.honk();
+  print('Car 1: ${car1.color}, ${car1.brand}, ${car1.year}');
+  Cat cat1 = Cat();
+  cat1.eat();
+  cat1.meow();
+}
 
-void main() {
-  // Definisi paket
-  PaketLaundry cuciSetrika = PaketLaundry("Cuci & Setrika", 6000);
-  PaketLaundry cuci = PaketLaundry("Cuci", 4000);
-  PaketLaundry setrika = PaketLaundry("Setrika", 3000);
-
-  TransaksiLaundry transaksi = TransaksiLaundry();
-
-  bool lanjut = true;
-  print("=== Aplikasi Mini Laundry (OOP) ===");
-
-  while (lanjut) {
-    print("\nPilih Paket:");
-    print("1. Cuci & Setrika (Rp6000/kg)");
-    print("2. Cuci (Rp4000/kg)");
-    print("3. Setrika (Rp3000/kg)");
-    print("4. Selesai dan hitung total");
-
-    stdout.write("Masukkan pilihan Anda (1-4): ");
-    int pilihan = int.parse(stdin.readLineSync()!);
-
-    if (pilihan == 4) {
-      lanjut = false;
-      break;
-    }
-
-    stdout.write("Masukkan jumlah kg: ");
-    int kg = int.parse(stdin.readLineSync()!);
-
-    switch (pilihan) {
-      case 1:
-        transaksi.tambahPesanan(cuciSetrika, kg);
-        print(
-          "Ditambahkan: $kg kg ${cuciSetrika.nama} = Rp${cuciSetrika.hitungHarga(kg)}",
-        );
-        break;
-      case 2:
-        transaksi.tambahPesanan(cuci, kg);
-        print("Ditambahkan: $kg kg ${cuci.nama} = Rp${cuci.hitungHarga(kg)}");
-        break;
-      case 3:
-        transaksi.tambahPesanan(setrika, kg);
-        print(
-          "Ditambahkan: $kg kg ${setrika.nama} = Rp${setrika.hitungHarga(kg)}",
-        );
-        break;
-      default:
-        print("Pilihan tidak valid!");
-    }
+class Car {
+  //property
+  String color = '';
+  String brand = '';
+  int year = 0;
+  //method
+  void drive() {
+    print('The $color $brand is driving.');
   }
 
-  transaksi.cetakNota();
+  void honk() {
+    print('The $color $brand is honking.');
+  }
+}
+
+//pewarisan
+class Animal {
+  void eat() {
+    print('The animal is eating.');
+  }
+}
+
+class Dog extends Animal {
+  void bark() {
+    print('The dog is barking.');
+  }
+}
+
+class Cat extends Animal {
+  void meow() {
+    print('The cat is meowing.');
+  }
 }
